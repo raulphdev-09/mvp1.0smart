@@ -1,0 +1,31 @@
+{
+  "$description": "Tokens do briefing Smart&CIA. Sem arquivo Figma fornecido. Formato DTCG para adaptação/importação em ferramentas compatíveis.",
+  "color": {
+    "primary": { "$type": "color", "$value": "#181B20" },
+    "background": { "$type": "color", "$value": "#F6F5F1" },
+    "surface": { "$type": "color", "$value": "#FFFFFF" },
+    "accent": { "$type": "color", "$value": "#E87439", "$description": "CTAs e indicadores; usar texto escuro sobre o preenchimento laranja e validar contraste." },
+    "text_primary": { "$type": "color", "$value": "#202329" },
+    "text_secondary": { "$type": "color", "$value": "#707780", "$description": "Token original do briefing. Validar WCAG AA sobre cada fundo; adaptar para tom mais escuro quando necessário para texto pequeno." },
+    "border": { "$type": "color", "$value": "#E5E4E0" }
+  },
+  "typography": {
+    "heading": { "$type": "fontFamily", "$value": ["Manrope", "sans-serif"] },
+    "body": { "$type": "fontFamily", "$value": ["Inter", "sans-serif"] },
+    "body_size": { "$type": "dimension", "$value": { "value": 16, "unit": "px" }, "$description": "Corpo 16–18px conforme contexto; H1 fluido com clamp()." },
+    "body_line_height": { "$type": "number", "$value": 1.6 }
+  },
+  "layout": {
+    "columns": { "$type": "number", "$value": 12 },
+    "max_content_width": { "$type": "dimension", "$value": { "value": 1360, "unit": "px" } },
+    "spacing_unit": { "$type": "dimension", "$value": { "value": 8, "unit": "px" } },
+    "radius_small": { "$type": "dimension", "$value": { "value": 8, "unit": "px" } },
+    "radius_panel": { "$type": "dimension", "$value": { "value": 12, "unit": "px" } },
+    "radius_large": { "$type": "dimension", "$value": { "value": 14, "unit": "px" } },
+    "sidebar_collapsed": { "$type": "dimension", "$value": { "value": 76, "unit": "px" } },
+    "sidebar_expanded": { "$type": "dimension", "$value": { "value": 256, "unit": "px" } }
+  },
+  "motion": {
+    "navigation": { "$type": "duration", "$value": { "value": 200, "unit": "ms" }, "$description": "Desativar transições e rolagem suave com prefers-reduced-motion: reduce." }
+  }
+}

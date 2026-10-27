@@ -1,0 +1,19 @@
+{
+  "scope": "Auditoria local da demonstração em build de produção; não valida deploy público.",
+  "lighthouseVersion": "13.6.0",
+  "fetchTime": "2026-10-27T23:32:14.665Z",
+  "formFactor": "mobile",
+  "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 63
+  },
+  "metrics": {
+    "first-contentful-paint": "0.8 s",
+    "largest-contentful-paint": "0.8 s",
+    "cumulative-layout-shift": "0.01",
+    "total-blocking-time": "0 ms"
+  },
+  "seoLimitation": "Demonstração com meta robots noindex,nofollow e robots.txt Disallow: /. Não remover até autorização e confirmação dos dados e domínio."
+}
