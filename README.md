@@ -66,6 +66,8 @@ O repositório previsto é `raulphdev-09/mvp1.0smart`. Preserve seu nome e sua i
 
 A conexão nativa requer acesso ao projeto no Lovable: **Settings → Connectors → GitHub**. A sincronização bidirecional descrita no briefing ocorre somente em `main`. A criação do código neste checkout não realiza essa conexão nem confirma a sincronização.
 
+O MVP foi enviado para `main`. A consulta do CI por `gh run list` retornou `Forbidden`; `api.github.com` ainda não está permitido na política de rede em execução. A adição desse domínio foi salva no rascunho do ambiente, mas depende de aplicação das configurações. Não há confirmação de CI verde.
+
 ## Publicar na Render
 
 O arquivo [`render.yaml`](render.yaml) prepara um **Static Site**, com deploy automático a partir de `main`:
@@ -87,7 +89,7 @@ Após obter a URL pública, valide sidebar, menu mobile, todas as âncoras, CTAs
 | 2 — Navegação | Sidebar desktop, menu mobile acessível e seção ativa | Navegação validada em Chromium, inclusive teclado e foco móvel | Aprovação visual e de navegação. |
 | 3 — Conteúdo | Início, Serviços, Como funciona, Sobre, Contato e rodapé | 5 seções, CTAs e ausência de contatos fictícios verificados | Serviços, processo, fotos, textos e canais reais. |
 | 4 — Qualidade | Responsividade, acessibilidade e SEO básico | Lint, build e 8 testes aprovados; axe sem violações AA detectadas | Aprovação dos dados antes de habilitar indexação. |
-| 5 — Publicação | CI e Blueprint da Render | GitHub/Render pendentes de execução confirmada | Acesso às contas, integração Lovable, plano gratuito e domínio. |
+| 5 — Publicação | CI e Blueprint da Render | Push em `main` confirmado; CI remoto e Render pendentes | Acesso às contas, integração Lovable, plano gratuito e domínio. |
 
 ### Lighthouse mobile
 
