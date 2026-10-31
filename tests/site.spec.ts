@@ -108,7 +108,8 @@ test('monta orçamento sem perder acentos ou caracteres da mensagem', () => {
 test('orçamento valida os campos e redireciona com o problema informado', async ({ page }) => {
   // Intercepta o destino externo: o teste não acessa o WhatsApp nem envia mensagens.
   await page.route('https://wa.me/**', route => route.fulfill({ status: 200, contentType: 'text/html', body: '<p>Destino interceptado pelo teste.</p>' }));
-  await page.goto('/#contato');
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Solicitar orçamento', exact: true }).click();
   await expect(page.locator('.floating-contact')).toHaveCount(0);
   await page.getByRole('button', { name: 'Continuar no WhatsApp', exact: true }).click();
   await expect(page).toHaveURL(/#contato$/);
