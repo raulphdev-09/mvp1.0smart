@@ -13,3 +13,21 @@ export function safeHttpsUrl(value: string): string | undefined {
   try { const url = new URL(value); return url.protocol === 'https:' ? url.href : undefined; }
   catch { return undefined; }
 }
+
+export interface RepairQuote { model: string; issue: string; description: string }
+export function getRepairQuoteUrl(phone: string, quote: RepairQuote): string | null {
+  if (!isValidBrazilianPhone(phone) || !quote.model.trim() || !quote.issue.trim()) return null;
+  const message = [
+    'Olá! Gostaria de solicitar um orçamento para o conserto do meu celular.',
+    `Marca e modelo: ${quote.model.trim().slice(0, 100)}`,
+    `Problema: ${quote.issue.trim().slice(0, 100)}`,
+    quote.description.trim() ? `Detalhes: ${quote.description.trim().slice(0, 1000)}` : '',
+  ].filter(Boolean).join('\n');
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
+
+export function formatBrazilianPhone(phone: string): string {
+  if (!isValidBrazilianPhone(phone)) return '';
+  const local = phone.slice(4);
+  return `(${phone.slice(2, 4)}) ${local.slice(0, -4)}-${local.slice(-4)}`;
+}

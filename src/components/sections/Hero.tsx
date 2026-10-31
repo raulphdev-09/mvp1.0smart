@@ -18,11 +18,8 @@ export function Hero() {
           <QuoteLink className="reference-contact">Solicitar orçamento<span><ArrowUpRight size={23} aria-hidden="true" /></span></QuoteLink>
         </div>
       </div>
-      {photo && <div className="hero-photo-details">
-        <svg className="phone-outline" viewBox="0 0 440 540" fill="none" aria-hidden="true"><path d="M118 34h210q52 0 52 52v354q0 52-52 52H116q-52 0-52-52V304q0-20-18-30l-20-12q-22-13-10-36t36-12l28 14q18 9 18-14V86q0-52 20-52Z" stroke="white" strokeOpacity=".85" strokeWidth="3" /><path d="M175 34v7q0 18 18 18h54q18 0 18-18v-7" stroke="white" strokeOpacity=".85" strokeWidth="3" /><circle cx="380" cy="398" r="7" fill="#71D8F2" stroke="white" strokeWidth="3" /></svg>
-        <span className="photo-callout photo-callout-top">Um olhar de perto</span>
-        <span className="photo-callout photo-callout-bottom">Nos detalhes do aparelho</span>
-        <div className="hero-care-card"><Wrench size={28} strokeWidth={1.4} aria-hidden="true" /><p>Conte o que<br />aconteceu.</p><span>O primeiro passo é entender.</span><a href="#servicos" aria-label="Conhecer serviços"><ArrowUpRight size={22} aria-hidden="true" /></a></div>
+      {photo && <div className="hero-photo-details hero-photo-details-simple">
+        <a className="hero-quote-callout" href="#contato"><Wrench size={24} strokeWidth={1.4} aria-hidden="true" /><span>Orçamento do seu conserto<small>Conte o que aconteceu</small></span><ArrowUpRight size={22} aria-hidden="true" /></a>
       </div>}
       <div className="reference-hero-footer"><a href="#servicos"><ArrowDown size={16} aria-hidden="true" />Explore os serviços</a><span>{stockPhoto ? 'Fotografia de banco · uso ilustrativo' : 'Smart&CIA / Manutenção de celulares'}</span></div>
     </div>

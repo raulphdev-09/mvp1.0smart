@@ -13,7 +13,7 @@ export function Services() {
       <div className="section-heading">
         <div>
           <p className="section-kicker">01 / SERVIÇOS</p>
-          <h2 id="services-title">Cada aparelho,<br />uma atenção diferente.</h2>
+          <h2 id="services-title">Qual é o problema<br />do seu celular?</h2>
         </div>
         <div className="section-intro">
           <p>Entender o problema é o começo. Encontre abaixo o assunto sobre o qual você quer conversar.</p>
