@@ -2,7 +2,7 @@ export interface Service { id: string; title: string; description: string; icon:
 export interface ProcessStep { title: string; description: string }
 export interface BusinessConfig {
   name: string; demoMode: boolean; logo: string; phone: string; whatsapp: string;
-  instagram: string; address: string; hours: string; mapEmbedUrl: string;
+  instagram: string; address: string; serviceArea: string; hours: string; mapEmbedUrl: string;
   heroPhoto: string; aboutPhoto: string; aboutText: string;
   services: Service[]; process: ProcessStep[];
   seo: { title: string; description: string; image: string; siteUrl: string };
@@ -10,10 +10,11 @@ export interface BusinessConfig {
 export const business: BusinessConfig = {
   name: 'Smart&CIA', demoMode: true,
   logo: '', // REVISAR: logotipo autorizado
-  phone: '', // REVISAR: telefone comercial, somente dígitos
-  whatsapp: '', // REVISAR: WhatsApp brasileiro 55 + DDD + número
+  phone: '5573981338766', // Contato público informado pelo responsável.
+  whatsapp: '5573981338766', // Contato para orçamentos informado pelo responsável.
   instagram: '', // REVISAR: URL HTTPS do perfil confirmado
   address: '', // REVISAR: endereço verificado
+  serviceArea: '', // REVISAR: bairros ou cidades atendidos
   hours: '', // REVISAR: horários confirmados
   mapEmbedUrl: '', // REVISAR: incorporação HTTPS somente com endereço verificado
   heroPhoto: '', // REVISAR: fotografia real autorizada do aparelho em reparo
@@ -30,10 +31,10 @@ export const business: BusinessConfig = {
 };
 // Exemplos explícitos para demonstrar a interface; não são serviços ou processos confirmados.
 export const demoServices: Service[] = [
-  { id: 'tela', title: 'Troca de tela', description: 'Uma tela danificada? O primeiro passo é entender o que o aparelho precisa.', icon: 'screen' },
-  { id: 'bateria', title: 'Substituição de bateria', description: 'Para conversar sobre autonomia e as condições da bateria do seu dispositivo.', icon: 'battery' },
-  { id: 'carga', title: 'Conector de carga', description: 'Dificuldades para carregar merecem uma avaliação do aparelho.', icon: 'charging' },
-  { id: 'diagnostico', title: 'Diagnóstico de defeitos', description: 'Conte o que aconteceu para orientar uma avaliação técnica.', icon: 'diagnosis' },
+  { id: 'tela', title: 'Tela quebrada ou sem imagem', description: 'Vidro trincado, manchas na tela ou toque que não responde? Consulte a possibilidade de reparo.', icon: 'screen' },
+  { id: 'bateria', title: 'Bateria descarregando rápido', description: 'Conte quanto tempo a carga dura e se o aparelho desliga durante o uso.', icon: 'battery' },
+  { id: 'carga', title: 'Celular não carrega', description: 'Mau contato no cabo, carga intermitente ou nenhuma resposta ao conectar? Descreva o que acontece.', icon: 'charging' },
+  { id: 'diagnostico', title: 'Não liga ou apresenta falhas', description: 'Informe o modelo e quando a falha começou para consultar as opções de avaliação.', icon: 'diagnosis' },
 ];
 export const demoProcess: ProcessStep[] = [
   { title: 'Conte o que aconteceu', description: 'Descreva o problema e informe o modelo do aparelho.' },

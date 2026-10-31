@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { getWhatsAppUrl, isValidBrazilianPhone } from '../src/lib/whatsapp';
+import { business } from '../src/config/business';
+import { getWhatsAppUrl, isValidBrazilianPhone, getRepairQuoteUrl } from '../src/lib/whatsapp';
 
 test('valida número e codifica mensagens de orçamento', () => {
   for (const value of ['', '5511000000000', '5500999999999', '55 11 999999999', 'javascript:alert(1)']) {
@@ -22,7 +23,9 @@ for (const width of [360, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     await expect(page.locator('h1')).toHaveCount(1);
-    await expect(page.locator('a[href*="wa.me"]')).toHaveCount(0);
+    for (const link of await page.locator('a[href*="wa.me"]').all()) {
+      expect(new URL(await link.getAttribute('href') as string).pathname).toBe(`/${business.whatsapp}`);
+    }
     await expect(page.locator('iframe')).toHaveCount(0);
     await expect(page.locator('.demo-banner')).toContainText('Protótipo comercial não oficial');
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
@@ -45,7 +48,7 @@ for (const width of [360, 768, 1024, 1440]) {
     await page.goto('/');
     await page.getByRole('link', { name: 'Solicitar orçamento', exact: true }).click();
     await expect(page).toHaveURL(/#contato$/);
-    await expect(page.getByRole('heading', { name: 'Canais de contato em configuração' })).toBeInViewport();
+    await expect(page.getByRole('heading', { name: 'O que aconteceu com o aparelho?' })).toBeInViewport();
     expect(errors).toEqual([]);
   });
 }
@@ -89,3 +92,36 @@ for (const width of [360, 1440]) {
     }
   });
 }
+
+test('monta orçamento sem perder acentos ou caracteres da mensagem', () => {
+  const quote = { model: '  Moto G & iPhone  ', issue: 'Tela não responde', description: 'Caiu ontem. Tela: 100% escura & sem toque.' };
+  const phone = '5511987654321'; // Número sintético: nunca recebe solicitações.
+  expect(getRepairQuoteUrl('', quote)).toBeNull();
+  expect(getRepairQuoteUrl(phone, { ...quote, model: ' ' })).toBeNull();
+  expect(getRepairQuoteUrl(phone, { ...quote, issue: '' })).toBeNull();
+  const url = new URL(getRepairQuoteUrl(phone, quote)!);
+  expect(url.origin).toBe('https://wa.me');
+  expect(url.searchParams.get('text')).toContain('Marca e modelo: Moto G & iPhone\nProblema: Tela não responde');
+  expect(url.searchParams.get('text')).toContain(quote.description);
+});
+
+test('orçamento valida os campos e redireciona com o problema informado', async ({ page }) => {
+  // Intercepta o destino externo: o teste não acessa o WhatsApp nem envia mensagens.
+  await page.route('https://wa.me/**', route => route.fulfill({ status: 200, contentType: 'text/html', body: '<p>Destino interceptado pelo teste.</p>' }));
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Solicitar orçamento', exact: true }).click();
+  await expect(page.locator('.floating-contact')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Continuar no WhatsApp', exact: true }).click();
+  await expect(page).toHaveURL(/#contato$/);
+  await expect(page.getByLabel('Marca e modelo do celular')).toBeFocused();
+  await page.getByLabel('Marca e modelo do celular').fill('Samsung Galaxy A54');
+  await page.getByLabel('Qual é o problema?').selectOption('Outro problema');
+  await page.getByLabel('Conte um pouco mais').fill('Não liga depois de uma queda.');
+  await page.getByRole('button', { name: 'Continuar no WhatsApp', exact: true }).click();
+  await page.waitForURL('https://wa.me/**');
+  const target = new URL(page.url());
+  expect(target.pathname).toBe(`/${business.whatsapp}`);
+  expect(target.searchParams.get('text')).toContain('Marca e modelo: Samsung Galaxy A54');
+  expect(target.searchParams.get('text')).toContain('Problema: Outro problema');
+  expect(target.searchParams.get('text')).toContain('Não liga depois de uma queda.');
+});

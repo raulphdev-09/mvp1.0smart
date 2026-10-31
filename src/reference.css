@@ -147,3 +147,29 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible { outline-color: #
   .repair-detail img { height: 320px; border-radius: 20px; }
   #contato { border-radius: 20px; }
 }
+/* A simpler opening and a clear path from the problem to a repair quote. */
+.hero-photo-details-simple { display: flex; align-items: flex-end; justify-content: flex-end; padding: 0 16px 40px 0; }
+.hero-quote-callout { display: flex; gap: 16px; align-items: center; padding: 20px 24px; color: white; background: #071831; border: 1px solid #6590AB; border-radius: 16px; box-shadow: 0 8px 32px #07183130; pointer-events: auto; font-size: 14px; }
+.hero-quote-callout > svg { color: #73D9EF; }
+.hero-quote-callout small { display: block; color: #C8DBEC; margin-top: 6px; font-size: 11px; }
+.repair-quote-form { border: 1px solid #486683; border-radius: 16px; padding: 32px; background: #102640; }
+.quote-form-kicker { display: flex; gap: 10px; align-items: center; font-size: 10px; letter-spacing: .06em; color: #B6EDFA; }
+.repair-quote-form h3 { font-size: 24px; line-height: 1.3; letter-spacing: -.6px; margin-top: 20px; }
+.quote-form-intro,.quote-form-note { font-size: 12px; line-height: 1.7; color: #C8DBEC; margin-top: 12px; }
+.quote-fields { display: flex; flex-direction: column; margin-top: 24px; }
+.quote-fields label { font-size: 12px; font-weight: 500; color: #F7FAFC; margin-bottom: 8px; }
+.quote-fields label:not(:first-child) { margin-top: 20px; }
+.quote-optional { color: #C8DBEC; font-weight: 400; }
+.quote-fields input,.quote-fields select,.quote-fields textarea { width: 100%; min-width: 0; padding: 12px 14px; border: 1px solid #9FB5C8; border-radius: 8px; background: #F7FAFC; color: #10243E; font: inherit; font-size: 14px; line-height: 1.5; }
+.quote-fields input::placeholder,.quote-fields textarea::placeholder { color: #526479; }
+.quote-fields textarea { resize: vertical; min-height: 96px; }
+.quote-fields input:focus-visible,.quote-fields select:focus-visible,.quote-fields textarea:focus-visible { outline: 3px solid #73D9EF; outline-offset: 3px; }
+.quote-submit { width: 100%; margin-top: 24px; border: 0; }
+.quote-submit:disabled { cursor: not-allowed; background: #BDD0DD; color: #10243E; transform: none; }
+@media (max-width: 767px) {
+  .hero-photo-details-simple { padding: 0 16px 24px 0; }
+  .hero-quote-callout { padding: 16px; gap: 12px; font-size: 12px; }
+  .hero-quote-callout small { font-size: 10px; }
+  .repair-quote-form { padding: 24px 20px; }
+  .repair-quote-form h3 { font-size: 22px; }
+}
