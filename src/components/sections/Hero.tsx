@@ -10,7 +10,7 @@ export function Hero() {
     <div className="hero-color-wash" aria-hidden="true" />
     <div className="reference-hero-inner">
       <div className="reference-hero-copy">
-        <p className="hero-eyebrow">SMART&CIA / ASSISTÊNCIA TÉCNICA</p>
+        <div className="hero-brand-lockup"><p className="hero-brand-name">{business.name}</p><p className="hero-eyebrow">ASSISTÊNCIA TÉCNICA</p></div>
         <h1 id="hero-title"><span className="headline-ribbon">Manutenção</span><span className="headline-ribbon headline-ribbon-light">de celulares.</span><span className="headline-open">Para o seu<br />dia a dia.</span></h1>
         <p className="reference-hero-description">Conheça os serviços para o seu aparelho e entre em contato para solicitar uma avaliação.</p>
         <div className="reference-hero-actions">
