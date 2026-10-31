@@ -28,15 +28,10 @@ for (const width of [360, 768, 1024, 1440]) {
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     if (width >= 768) {
-      const rail = page.locator('.sidebar');
-      await expect(rail).toHaveCSS('width', '76px');
-      await page.getByRole('button', { name: 'Expandir navegação' }).click();
-      await expect(rail).toHaveCSS('width', '256px');
-      const left = await page.locator('.page-content').evaluate(el => el.getBoundingClientRect().left);
-      expect(left).toBe(256);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-      for (const [label, id] of [['Serviços','servicos'], ['Como funciona','processo'], ['Sobre','sobre'], ['Contato','contato'], ['Início','inicio']]) {
-        const link = rail.getByRole('link', { name: label, exact: true });
+      const navigation = page.getByRole('navigation', { name: 'Navegação principal', exact: true });
+      await expect(navigation).toBeVisible();
+      for (const [label, id] of [['Serviços','servicos'], ['Como funciona','processo'], ['Sobre','sobre'], ['Início','inicio']]) {
+        const link = navigation.getByRole('link', { name: label, exact: true });
         await link.click();
         await expect(page).toHaveURL(new RegExp(`#${id}$`));
         await expect(link).toHaveAttribute('aria-current','location');

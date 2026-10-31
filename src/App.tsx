@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { Sidebar } from './components/layout/Sidebar';
+import { ArrowUpRight, Smartphone } from 'lucide-react';
 import { MobileNavigation } from './components/layout/MobileNavigation';
+import { navigationItems } from './components/layout/navigation';
 import { Footer } from './components/layout/Footer';
 import { Hero } from './components/sections/Hero';
 import { Services } from './components/sections/Services';
@@ -13,21 +12,22 @@ import { QuoteLink } from './components/ui/QuoteLink';
 import { useActiveSection } from './hooks/useActiveSection';
 import { business } from './config/business';
 export default function App() {
-  const [expanded, setExpanded] = useState(false);
   const activeSection = useActiveSection();
   return <>
     <a href="#conteudo" className="skip-link">Ir para o conteúdo</a>
-    <Sidebar expanded={expanded} onToggle={() => setExpanded(!expanded)} activeSection={activeSection} />
     <MobileNavigation activeSection={activeSection} />
-    <div className={`page-content${expanded ? ' navigation-expanded' : ''}`}>
+    <div className="page-content">
       <header className="desktop-masthead">
-        <a className="wordmark" href="#inicio" aria-label={`${business.name} — início`}>{business.name}<span className="brand-dot">.</span></a>
-        <span className="masthead-note">Tecnologia merece cuidado.</span>
-        <QuoteLink className="masthead-contact">Vamos conversar <ArrowUpRight size={17} /></QuoteLink>
+        <a className="wordmark" href="#inicio" aria-label={`${business.name} — início`}><Smartphone size={24} aria-hidden="true" />{business.name}<span className="brand-dot">/</span></a>
+        <nav className="desktop-navigation" aria-label="Navegação principal">
+          {navigationItems.filter(item => item.id !== 'contato').map(({id,label}) => <a key={id} href={`#${id}`} aria-current={activeSection === id ? 'location' : undefined}><span aria-hidden="true">/</span>{label}</a>)}
+        </nav>
+        <QuoteLink className="masthead-contact">Área de contato<span><ArrowUpRight size={20} aria-hidden="true" /></span></QuoteLink>
       </header>
-      {business.demoMode && <div className="demo-banner"><span className="status-dot" /><span>Protótipo comercial não oficial <span className="demo-banner-detail">· Conteúdo de demonstração</span></span></div>}
       <main id="conteudo" tabIndex={-1}>
-        <Hero /><Services /><Process /><About /><Contact />
+        <Hero />
+        {business.demoMode && <div className="demo-banner"><span className="status-dot" /><span>Protótipo comercial não oficial <span className="demo-banner-detail">· Serviços demonstrativos e fotografias de banco</span></span></div>}
+        <Services /><Process /><About /><Contact />
       </main>
       <Footer />
     </div>
