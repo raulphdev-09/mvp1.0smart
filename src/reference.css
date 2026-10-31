@@ -1,9 +1,12 @@
 /* Visual direction supplied by the user: photographic blue/cyan opening. */
 :root { --primary: #071831; --background: #F7FAFC; --accent: #73D9EF; --text: #10243E; --accessible-muted: #526479; --border: #DFE7ED; background: var(--background); color: var(--text); }
-body { background: var(--background); }
+/* Static copy is not an editing surface, including in browser caret navigation. */
+body { background: var(--background); cursor: default; caret-color: transparent; }
+a,button,summary { cursor: pointer; }
+input,textarea,[contenteditable="true"],[contenteditable="plaintext-only"] { cursor: text; caret-color: auto; }
 .page-content { margin-left: 0; }
 .desktop-masthead { height: 88px; max-width: 1600px; padding: 0 48px; border: 0; background: #fff; }
-.wordmark { display: inline-flex; align-items: center; gap: 8px; color: #163C7A; font-size: 25px; letter-spacing: -1.2px; }
+.wordmark { display: inline-flex; align-items: center; gap: 8px; color: #163C7A; font-size: 32px; letter-spacing: -1.4px; }
 .wordmark > svg { color: #257EA9; }
 .brand-dot { color: #2488A8; }
 .desktop-navigation { display: flex; align-items: center; gap: 32px; }
@@ -18,7 +21,9 @@ body { background: var(--background); }
 .hero-color-wash { position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg,#123B91 0%,#123B91 30%,#123B91D9 42%,#123B9150 61%,#0718310A 100%); }
 .reference-hero-inner { max-width: 1600px; margin: auto; padding: 64px 48px 24px; min-height: 720px; position: relative; }
 .reference-hero-copy { position: relative; z-index: 2; width: 55%; max-width: 720px; }
-.reference-hero .hero-eyebrow { color: #D6EDF7; font-size: 10px; letter-spacing: .13em; margin-bottom: 32px; }
+.hero-brand-lockup { margin-bottom: 32px; }
+.hero-brand-name { font-family: 'Manrope',sans-serif; font-size: 40px; font-weight: 700; line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 12px; }
+.reference-hero .hero-eyebrow { color: #D6EDF7; font-size: 10px; letter-spacing: .13em; margin-bottom: 0; }
 .reference-hero .hero-eyebrow::before { background: #73D9EF; }
 .reference-hero h1 { font-size: clamp(48px,5.6vw,82px); font-weight: 400; letter-spacing: -.055em; line-height: 1.07; }
 .headline-ribbon { display: table; position: relative; padding: 0 12px 8px; background: #071831; color: #fff; border: 1px solid #73D9EF; border-radius: 8px; transform: rotate(-2deg); box-shadow: -6px 0 0 #73D9EF; }
@@ -93,7 +98,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible { outline-color: #
 @media (min-width: 768px) and (max-width: 900px) {
   .desktop-navigation { gap: 16px; }
   .desktop-navigation a { gap: 8px; font-size: 11px; }
-  .wordmark { font-size: 21px; }
+  .wordmark { font-size: 26px; }
   .wordmark > svg { display: none; }
   .masthead-contact { padding-left: 12px; gap: 8px; font-size: 11px; }
   .reference-hero h1 { font-size: 56px; }
@@ -107,7 +112,10 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible { outline-color: #
   .page-content { padding-top: 64px; margin-left: 0; }
   .reference-hero-inner { padding: 32px 24px 20px; min-height: 850px; }
   .reference-hero-copy { width: 100%; max-width: none; }
-  .reference-hero .hero-eyebrow { font-size: 8px; margin-bottom: 24px; }
+  .hero-brand-lockup { margin-bottom: 24px; }
+  .hero-brand-name { font-size: 32px; margin-bottom: 8px; letter-spacing: -1px; }
+  .reference-hero .hero-eyebrow { font-size: 8px; margin-bottom: 0; }
+  .mobile-brand { font-size: 26px; }
   .reference-hero h1 { font-size: clamp(43px,10.8vw,64px); }
   .headline-ribbon { padding: 0 8px 6px; border-radius: 6px; }
   .headline-ribbon-light { margin-top: 12px; }
