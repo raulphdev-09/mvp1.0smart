@@ -41,3 +41,14 @@ export const demoProcess: ProcessStep[] = [
   { title: 'Alinhamento do orçamento', description: 'Condições e serviço são combinados antes de prosseguir.' },
   { title: 'Orientações de retirada', description: 'Após o atendimento, são alinhadas as instruções de retirada.' },
 ];
+
+// Fotografias licenciadas e textos editoriais da demonstração, sem afirmar vínculo com a empresa.
+export const demoEditorial = {
+  headline: 'Celular com problema?',
+  headlineDetail: 'Vamos olhar de perto.',
+  heroPhoto: '/images/repair-hero.webp',
+  detailPhoto: '/images/repair-hands.webp',
+  aboutTitle: 'Antes do orçamento, os detalhes.',
+  aboutText: 'Uma queda, uma falha ao carregar ou uma tela que deixou de responder. Conte o que mudou e quando o problema começou.',
+  aboutDetail: 'Tenha o modelo do aparelho em mãos. Essas informações ajudam a explicar a situação no primeiro contato.',
+};
